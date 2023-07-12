@@ -22,5 +22,3 @@ in an academic setting.
 - As a user, I want to be able to pause, play, skip, replay a song
 - As a user, I want to be able to create and view custom playlists that I can save and delete
 - As a user, I want to be able to be able to add and delete songs from playlists
-
-An example of text with **bold** and *italic* fonts.  
