@@ -16,8 +16,7 @@ in an academic setting.
 
 
 ## User Stories
-- As a user, I want to be able to add songs to the application
 - As a user, I want to be able to see the song title, artist and song length of the song playing
 - As a user, I want to be able to pause, play, skip, replay a song
-- As a user, I want to be able to create and view custom playlists that I can save and delete
-- As a user, I want to be able to be able to add and delete songs from playlists
+- As a user, I want to be able to view all the songs in the library
+- As a user, I want to be able to be able to add and delete songs from the library

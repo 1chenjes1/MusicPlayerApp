@@ -13,6 +13,15 @@ public class Song {
         this.duration = length;
     }
 
+    @Override
+    public String toString() {
+        return "Song{"
+                + "title='" + title + '\''
+                + ", artist='" + artist + '\''
+                + ", duration='" + duration + '\''
+                + '}';
+    }
+
     //getters
     public String getTitle() {
         return this.title;
