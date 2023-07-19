@@ -8,7 +8,7 @@ public class Library {
     String name;
     ArrayList<Song> songs;
 
-    // EFFECTS: Creates new library with given name
+    // EFFECTS: Creates new library with given name and contains no songs
     public Library(String name) {
         this.name = name;
         this.songs = new ArrayList<>();
@@ -18,12 +18,28 @@ public class Library {
     // EFFECTS: If song is not in library already, adds given song to library and produces true. Otherwise, false.
     public boolean addSong(String title, String artist, String length) {
         Song song = new Song(title, artist, length);
-        if (this.songs.contains(song)) {
+        if (this.containSong(song)) {
             return false;
         } else {
             this.songs.add(song);
             return true;
         }
+    }
+
+    // EFFECTS: returns true if song with same name, artist, duration is in library songs
+    public boolean containSong(Song song) {
+        boolean result = false;
+        for (Song s : this.songs) {
+            if ((s.getArtist() == song.getArtist())
+                    && (s.getTitle() == song.getTitle())
+                    && (s.getLength() == song.getLength())) {
+                result = true;
+                break;
+            } else {
+                result = false;
+            }
+        }
+        return result;
     }
 
 
