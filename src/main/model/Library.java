@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 
 public class Library {
     String name;
@@ -13,7 +15,7 @@ public class Library {
     }
 
     // MODIFIES: This
-    // EFFECTS: Adds given song to library
+    // EFFECTS: If song is not in library already, adds given song to library and produces true. Otherwise, false.
     public boolean addSong(String title, String artist, String length) {
         Song song = new Song(title, artist, length);
         if (this.songs.contains(song)) {
@@ -22,6 +24,36 @@ public class Library {
             this.songs.add(song);
             return true;
         }
+    }
+
+    // REQUIRES: songs must contain at least 1 element
+    // EFFECTS: returns the song after given song in list. If song is last in list, return first song in list
+    public Song next(Song song) {
+        int i = this.songs.indexOf(song);
+        if (i >= this.songs.size() - 1) {
+            return this.songs.get(0);
+        } else {
+            return this.songs.get(i + 1);
+        }
+    }
+
+    // REQUIRES: songs must contain at least 1 element
+    // EFFECTS: returns the song before given song in list. If song is first in list, return last song in list
+    public Song previous(Song song) {
+        int i = this.songs.indexOf(song);
+        int max = this.songs.size() - 1;
+        if (i == 0) {
+            return this.songs.get(max);
+        } else {
+            return this.songs.get(i - 1);
+        }
+    }
+
+
+    //EFFECTS: picks and plays random song in given Playlist
+    public Song shuffle() {
+        Random rndm = new Random();
+        return this.songs.get(rndm.nextInt(this.songs.size()));
     }
 
     public String getName() {
