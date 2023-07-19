@@ -19,4 +19,4 @@ in an academic setting.
 - As a user, I want to be able to see the song title, artist and song length of the song playing
 - As a user, I want to be able to pause, play, skip, replay a song
 - As a user, I want to be able to view all the songs in the library
-- As a user, I want to be able to be able to add and delete songs from the library
+- As a user, I want to be able to be able to add songs to the library

@@ -13,6 +13,7 @@ public class Song {
         this.duration = length;
     }
 
+    // EFFECTS: returns a string representation of song
     @Override
     public String toString() {
         return "Song{"

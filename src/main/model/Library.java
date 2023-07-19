@@ -11,7 +11,7 @@ public class Library {
     // EFFECTS: Creates new library with given name
     public Library(String name) {
         this.name = name;
-        this.songs = new ArrayList<Song>();
+        this.songs = new ArrayList<>();
     }
 
     // MODIFIES: This
@@ -25,6 +25,7 @@ public class Library {
             return true;
         }
     }
+
 
     // REQUIRES: songs must contain at least 1 element
     // EFFECTS: returns the song after given song in list. If song is last in list, return first song in list
@@ -49,13 +50,20 @@ public class Library {
         }
     }
 
-
-    //EFFECTS: picks and plays random song in given Playlist
+    // REQUIRES: songs must contain at least 1 element
+    // EFFECTS: selects random song in library
     public Song shuffle() {
         Random rndm = new Random();
         return this.songs.get(rndm.nextInt(this.songs.size()));
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes name of library to given string
+    public void changeName(String name) {
+        this.name = name;
+    }
+
+    // getters
     public String getName() {
         return name;
     }
