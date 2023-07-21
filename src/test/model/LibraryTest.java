@@ -34,15 +34,15 @@ public class LibraryTest {
     @Test
     void testNext() {
         assertTrue(testlib.addSong("test1","boy", "1:50"));
-        Song s1 = testlib.songs.get(0);
+        Song s1 = testlib.getSongs().get(0);
 
         assertEquals(s1,testlib.next(s1));
         assertEquals(s1,testlib.next(s1));
 
         assertTrue(testlib.addSong("test2","girl", "3:00"));
-        Song s2 = testlib.songs.get(1);
+        Song s2 = testlib.getSongs().get(1);
         assertTrue(testlib.addSong("test3","girl", "2:00"));
-        Song s3 = testlib.songs.get(2);
+        Song s3 = testlib.getSongs().get(2);
 
 
         assertEquals(s2,testlib.next(s1));
@@ -53,15 +53,15 @@ public class LibraryTest {
     @Test
     void testPrevious() {
         assertTrue(testlib.addSong("test1","boy", "1:50"));
-        Song s1 = testlib.songs.get(0);
+        Song s1 = testlib.getSongs().get(0);
 
         assertEquals(s1,testlib.previous(s1));
         assertEquals(s1,testlib.previous(s1));
 
         assertTrue(testlib.addSong("test2","girl", "3:00"));
-        Song s2 = testlib.songs.get(1);
+        Song s2 = testlib.getSongs().get(1);
         assertTrue(testlib.addSong("test3","girl", "2:00"));
-        Song s3 = testlib.songs.get(2);
+        Song s3 = testlib.getSongs().get(2);
 
         assertEquals(s3,testlib.previous(s1));
         assertEquals(s1,testlib.previous(s2));

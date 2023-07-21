@@ -5,8 +5,9 @@ import java.util.Random;
 
 
 public class Library {
-    String name;
-    ArrayList<Song> songs;
+    private String name;
+    private ArrayList<Song> songs;
+    private Song currentSong;
 
     // EFFECTS: Creates new library with given name and contains no songs
     public Library(String name) {
@@ -30,16 +31,19 @@ public class Library {
     public boolean containSong(Song song) {
         boolean result = false;
         for (Song s : this.songs) {
-            if ((s.getArtist() == song.getArtist())
-                    && (s.getTitle() == song.getTitle())
-                    && (s.getLength() == song.getLength())) {
+            if ((s.getArtist().equals(song.getArtist()))
+                    && (s.getTitle().equals(song.getTitle()))
+                    && (s.getLength().equals(song.getLength()))) {
                 result = true;
                 break;
-            } else {
-                result = false;
             }
         }
         return result;
+    }
+
+    public Song play() {
+        this.currentSong = this.songs.get(0);
+        return this.songs.get(0);
     }
 
 
@@ -48,8 +52,10 @@ public class Library {
     public Song next(Song song) {
         int i = this.songs.indexOf(song);
         if (i >= this.songs.size() - 1) {
+            this.currentSong = this.songs.get(0);
             return this.songs.get(0);
         } else {
+            this.currentSong = this.songs.get(i + 1);
             return this.songs.get(i + 1);
         }
     }
@@ -60,8 +66,10 @@ public class Library {
         int i = this.songs.indexOf(song);
         int max = this.songs.size() - 1;
         if (i == 0) {
+            this.currentSong = this.songs.get(max);
             return this.songs.get(max);
         } else {
+            this.currentSong = this.songs.get(i - 1);
             return this.songs.get(i - 1);
         }
     }
@@ -70,7 +78,13 @@ public class Library {
     // EFFECTS: selects random song in library
     public Song shuffle() {
         Random rndm = new Random();
-        return this.songs.get(rndm.nextInt(this.songs.size()));
+        Song song = this.songs.get(rndm.nextInt(this.songs.size()));
+        while (song == this.currentSong) {
+            Random rndm2 = new Random();
+            song = this.songs.get(rndm2.nextInt(this.songs.size()));
+        }
+        this.currentSong = song;
+        return song;
     }
 
     // MODIFIES: this

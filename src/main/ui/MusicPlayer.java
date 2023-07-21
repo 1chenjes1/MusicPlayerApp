@@ -96,7 +96,7 @@ public class MusicPlayer {
             System.out.println("There are currently no songs in your library.");
         } else if (!this.play && !this.pause) {
             this.play = true;
-            this.currentlyPlaying = userLib.getSongs().get(0);
+            this.currentlyPlaying = userLib.play();
         } else {
             this.play = true;
             this.pause = false;
@@ -210,7 +210,7 @@ public class MusicPlayer {
         Scanner s = new Scanner(System.in);
         String title;
         System.out.println("Please enter new library name");
-        title = s.next();
+        title = s.nextLine();
 
         userLib.changeName(title);
         System.out.println("Library name changed successfully.");
