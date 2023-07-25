@@ -22,3 +22,5 @@ in an academic setting.
 - As a user, I want to be able to see the song title, artist and song length of the current song playing
 - As a user, I want to be able to pause, play, skip, replay a song
 - As a user, I want to be able to shuffle my library
+- As a user, I want to be able to save my library with all my songs 
+- As a user, I want to be able to reload my library with all my songs from file

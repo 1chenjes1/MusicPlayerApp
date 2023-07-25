@@ -4,6 +4,7 @@ import model.Library;
 import model.Song;
 import java.util.Scanner;
 
+// The MusicPlayer application with console interface
 public class MusicPlayer {
 
     private Library userLib;

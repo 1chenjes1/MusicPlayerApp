@@ -1,5 +1,6 @@
 package model;
 
+// Represents a song with title, artist name, and duration in form minutes:seconds
 public class Song {
     String title;
     String artist;

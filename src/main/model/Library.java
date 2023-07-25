@@ -3,7 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-
+//Represents a library containing arbitrary amount of songs. Includes library name, list of songs and the song that is
+//playing currently
 public class Library {
     private String name;
     private ArrayList<Song> songs;
