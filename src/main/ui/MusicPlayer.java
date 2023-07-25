@@ -2,6 +2,11 @@ package ui;
 
 import model.Library;
 import model.Song;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // The MusicPlayer application with console interface
@@ -11,17 +16,22 @@ public class MusicPlayer {
     private boolean play;
     private boolean pause;
     private Song currentlyPlaying;
+    private Scanner sc;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/musicplayer.json";
 
     // EFFECTS: runs the music player application
     public MusicPlayer() {
-
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runMusicPlayer();
     }
 
     // MODIFIES: this
     // EFFECTS: interprets user inputs
     public void runMusicPlayer() {
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
         boolean quit = false;
 
         userLib = new Library("Your Library");
@@ -29,13 +39,14 @@ public class MusicPlayer {
         play = false;
         pause = false;
         currentlyPlaying = null;
+        String command = null;
 
         while (!quit) {
             mainMenu();
-            int command = sc.nextInt();
-            sc.nextLine();
+            command = sc.next();
+            command = command.toLowerCase();
 
-            if (command == 9) {
+            if (command.equals("11")) {
                 quit = true;
             } else {
                 mainCommand(command);
@@ -61,28 +72,34 @@ public class MusicPlayer {
         System.out.println("6 -> Add song to library");
         System.out.println("7 -> View library:" + " " + userLib.getName());
         System.out.println("8 -> Rename library");
-        System.out.println("9 -> Quit");
+        System.out.println("9 -> Save " + userLib.getName() + " to file");
+        System.out.println("10 -> load library from file");
+        System.out.println("11 -> Quit");
     }
 
     // MODIFIES: this
     // EFFECTS: processes main commands
-    private void mainCommand(Integer command) {
-        if (command.equals(1)) {
+    private void mainCommand(String command) {
+        if (command.equals("1")) {
             doPlay();
-        } else if (command.equals(2)) {
+        } else if (command.equals("2")) {
             doPause();
-        } else if (command.equals(3)) {
+        } else if (command.equals("3")) {
             doNext();
-        } else if (command.equals(4)) {
+        } else if (command.equals("4")) {
             doPrevious();
-        } else if (command.equals(5)) {
+        } else if (command.equals("5")) {
             doShuffle();
-        } else if (command.equals(6)) {
+        } else if (command.equals("6")) {
             add();
-        } else if (command.equals(7)) {
+        } else if (command.equals("7")) {
             runLibrary();
-        } else if (command.equals(8)) {
+        } else if (command.equals("8")) {
             renameLibrary();
+        } else if (command.equals("9")) {
+            saveLibrary();
+        } else if (command.equals("10")) {
+            loadLibrary();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -192,18 +209,17 @@ public class MusicPlayer {
             }
 
 
-            int command = sc.nextInt();
-            sc.nextLine();
+            String command = sc.next();
+            command = command.toLowerCase();
 
 
-            if (command == 1) {
+            if (command.equals("1")) {
                 back = true;
             } else {
                 System.out.println("Selection not valid...");
             }
         }
     }
-
 
     //MODIFIES: this
     //EFFECTS: renames library
@@ -215,7 +231,26 @@ public class MusicPlayer {
 
         userLib.changeName(title);
         System.out.println("Library name changed successfully.");
+    }
 
+    private void saveLibrary() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(userLib);
+            jsonWriter.close();
+            System.out.println("Saved " + userLib.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file " + JSON_STORE);
+        }
+    }
+
+    private void loadLibrary() {
+        try {
+            userLib = jsonReader.read();
+            System.out.println("Loaded " + userLib.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }
 

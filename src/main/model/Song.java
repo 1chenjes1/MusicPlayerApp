@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a song with title, artist name, and duration in form minutes:seconds
-public class Song {
+public class Song implements Writable {
     String title;
     String artist;
     String duration;
@@ -35,5 +38,15 @@ public class Song {
 
     public String getLength() {
         return this.duration;
+    }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("title",title);
+        json.put("artist", artist);
+        json.put("duration", duration);
+        return json;
     }
 }

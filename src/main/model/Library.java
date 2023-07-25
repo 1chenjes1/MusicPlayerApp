@@ -1,11 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 //Represents a library containing arbitrary amount of songs. Includes library name, list of songs and the song that is
 //playing currently
-public class Library {
+public class Library implements Writable {
     private String name;
     private ArrayList<Song> songs;
     private Song currentSong;
@@ -101,5 +105,23 @@ public class Library {
 
     public ArrayList<Song> getSongs() {
         return songs;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("songs", songsToJson());
+        return json;
+    }
+
+    private JSONArray songsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Song s : songs) {
+            jsonArray.put(s.toJson());
+        }
+
+        return jsonArray;
     }
 }
