@@ -233,6 +233,7 @@ public class MusicPlayer {
         System.out.println("Library name changed successfully.");
     }
 
+    // EFFECTS: saves library to file
     private void saveLibrary() {
         try {
             jsonWriter.open();
@@ -244,6 +245,8 @@ public class MusicPlayer {
         }
     }
 
+    //: this
+    // EFFECTS: loads library from file
     private void loadLibrary() {
         try {
             userLib = jsonReader.read();
