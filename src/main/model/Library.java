@@ -46,6 +46,8 @@ public class Library implements Writable {
         return result;
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets currentSong to first song in library
     public Song play() {
         this.currentSong = this.songs.get(0);
         return this.songs.get(0);
@@ -105,6 +107,10 @@ public class Library implements Writable {
 
     public ArrayList<Song> getSongs() {
         return songs;
+    }
+
+    public Song getCurrentSong() {
+        return currentSong;
     }
 
     @Override
