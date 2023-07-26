@@ -102,7 +102,10 @@ public class Library implements Writable {
     public Song shuffle() {
         Random rndm = new Random();
         Song song = this.songs.get(rndm.nextInt(this.songs.size()));
-        while (song == this.currentSong) {
+        Song s = this.getCurrentSong();
+        while ((s.getArtist().equals(song.getArtist()))
+                && (s.getTitle().equals(song.getTitle()))
+                && (s.getLength().equals(song.getLength()))) {
             Random rndm2 = new Random();
             song = this.songs.get(rndm2.nextInt(this.songs.size()));
         }
