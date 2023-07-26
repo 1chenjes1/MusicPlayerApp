@@ -1,1 +1,1 @@
-{"songs":[{"duration":"a","artist":"a","title":"a"},{"duration":"b","artist":"b","title":"b"},{"duration":"c","artist":"c","title":"c"},{"duration":"c","artist":"b","title":"a"},{"duration":"d","artist":"d","title":"d"}],"name":"My Library"}
+{"songs":[{"duration":"a","artist":"a","title":"a"},{"duration":"b","artist":"b","title":"b"}],"name":"test","currentsong":{"duration":"a","artist":"a","title":"a"}}

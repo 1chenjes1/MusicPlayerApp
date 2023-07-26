@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonWriterTest extends JsonTest{
     JsonWriter tw;
@@ -39,6 +38,7 @@ public class JsonWriterTest extends JsonTest{
             testlib = tr.read();
             assertEquals("Your Library", testlib.getName());
             assertEquals(0, testlib.getSongs().size());
+            assertTrue(testlib.getCurrentSong() == null);
         } catch (FileNotFoundException e) {
             fail("Threw FileNotFoundException");
         } catch (IOException e) {
@@ -64,6 +64,7 @@ public class JsonWriterTest extends JsonTest{
             assertEquals(2, testlib.getSongs().size());
             checkSong("a","a", "1:00",testlib.getSongs().get(0));
             checkSong("b","b", "2:00",testlib.getSongs().get(1));
+            assertTrue(testlib.getCurrentSong() == null);
         } catch (FileNotFoundException e) {
             fail("Threw FileNotFoundException");
         } catch (IOException e) {

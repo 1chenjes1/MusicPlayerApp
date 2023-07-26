@@ -52,6 +52,7 @@ public class MusicPlayer {
                 mainCommand(command);
             }
         }
+
         System.out.println("Music Player shutting down...");
 
     }
@@ -250,6 +251,14 @@ public class MusicPlayer {
     private void loadLibrary() {
         try {
             userLib = jsonReader.read();
+            if (userLib.getCurrentSong() == null) {
+                play = false;
+                pause = false;
+            } else {
+                play = true;
+                pause = false;
+            }
+            currentlyPlaying = userLib.getCurrentSong();
             System.out.println("Loaded " + userLib.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);

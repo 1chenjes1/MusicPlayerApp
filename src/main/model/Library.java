@@ -57,7 +57,7 @@ public class Library implements Writable {
     // REQUIRES: songs must contain at least 1 element
     // EFFECTS: returns the song after given song in list. If song is last in list, return first song in list
     public Song next(Song song) {
-        int i = this.songs.indexOf(song);
+        int i = indexOfSong(song);
         if (i >= this.songs.size() - 1) {
             this.currentSong = this.songs.get(0);
             return this.songs.get(0);
@@ -65,6 +65,22 @@ public class Library implements Writable {
             this.currentSong = this.songs.get(i + 1);
             return this.songs.get(i + 1);
         }
+    }
+
+    // REQUIRES: Song is in library songs
+    // EFFECTS: returns index of Song in library songs
+    public int indexOfSong(Song song) {
+        int result = 0;
+        for (Song s : this.songs) {
+            if ((s.getArtist().equals(song.getArtist()))
+                    && (s.getTitle().equals(song.getTitle()))
+                    && (s.getLength().equals(song.getLength()))) {
+                break;
+            } else {
+                result++;
+            }
+        }
+        return result;
     }
 
     // REQUIRES: songs must contain at least 1 element
