@@ -88,12 +88,11 @@ public class LibraryTest {
     void testShuffle1() {
         assertTrue(testlib.addSong("test1","boy", "1:50"));
         assertTrue(testlib.addSong("test2","girl", "3:00"));
-        assertTrue(testlib.addSong("test3","girl", "2:00"));
 
         Song s1 = testlib.play();
         Song s2;
         int i;
-        for (i = 0; i>10; i++) {
+        for (i = 0; i>20; i++) {
             s2 = testlib.shuffle();
             assertFalse(s1 == s2);
             assertTrue(testlib.getSongs().contains(s2));
@@ -125,9 +124,11 @@ public class LibraryTest {
         Song s1 = new Song("test2","girl", "3:00");
         Song s2 = new Song("test1","boy", "1:50");
         Song s3 = new Song("test2","girl", "2:00");
+        Song s4 = new Song("test2","girl", "2:50");
 
         assertEquals(1, testlib.indexOfSong(s1));
         assertEquals(0, testlib.indexOfSong(s2));
         assertEquals(2, testlib.indexOfSong(s3));
+        assertEquals(0, testlib.indexOfSong(s4));
     }
 }
