@@ -43,6 +43,12 @@ public class JsonReader {
     private Library parseLibrary(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Library lib = new Library(name);
+        if (jsonObject.get("currentsong") instanceof String) {
+            lib.setCurrentSong(null);
+        } else {
+            JSONObject currentsong = (JSONObject) jsonObject.get("currentsong");
+            addCurrentSong(lib, currentsong);
+        }
         addSongs(lib, jsonObject);
         return lib;
     }
@@ -62,5 +68,14 @@ public class JsonReader {
         String artist = jsonObject.getString("artist");
         String duration = jsonObject.getString("duration");
         lib.addSong(title, artist, duration);
+    }
+
+    //EFFECTS: sets song to currentlyplayed in library
+    private void addCurrentSong(Library lib, JSONObject jsonObject) {
+        String title = jsonObject.getString("title");
+        String artist = jsonObject.getString("artist");
+        String duration = jsonObject.getString("duration");
+        Song song = new Song(title, artist, duration);
+        lib.setCurrentSong(song);
     }
 }

@@ -101,4 +101,14 @@ public class LibraryTest {
         testlib.changeName("test2");
         assertEquals("test2", testlib.getName());
     }
+
+    @Test
+    void testSetCurrentSong() {
+        assertTrue(testlib.addSong("test1","boy", "1:50"));
+        assertTrue(testlib.addSong("test2","girl", "3:00"));
+        assertTrue(testlib.addSong("test3","girl", "2:00"));
+        Song s1 = testlib.getSongs().get(1);
+        testlib.setCurrentSong(s1);
+        assertEquals(s1, testlib.getCurrentSong());
+    }
 }

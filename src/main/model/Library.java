@@ -100,6 +100,10 @@ public class Library implements Writable {
         this.name = name;
     }
 
+    public void setCurrentSong(Song currentSong) {
+        this.currentSong = currentSong;
+    }
+
     // getters
     public String getName() {
         return name;
@@ -118,6 +122,13 @@ public class Library implements Writable {
         JSONObject json = new JSONObject();
         json.put("name", name);
         json.put("songs", songsToJson());
+
+        if (currentSong == null) {
+            json.put("currentsong", "no");
+        } else {
+            json.put("currentsong", currentSong.toJson());
+        }
+
         return json;
     }
 

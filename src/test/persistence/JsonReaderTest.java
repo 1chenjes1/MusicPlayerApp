@@ -40,7 +40,6 @@ public class JsonReaderTest extends JsonTest {
         tr = new JsonReader("./data/testGeneralLib.json");
         try {
             testlib = tr.read();
-            testlib = tr.read();
             assertEquals("Test Library", testlib.getName());
             assertEquals(2, testlib.getSongs().size());
             checkSong("a","a", "1:00",testlib.getSongs().get(0));
