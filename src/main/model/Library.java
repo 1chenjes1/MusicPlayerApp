@@ -120,6 +120,8 @@ public class Library implements Writable {
         this.name = name;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets currentsong to given song
     public void setCurrentSong(Song currentSong) {
         this.currentSong = currentSong;
     }
@@ -137,6 +139,7 @@ public class Library implements Writable {
         return currentSong;
     }
 
+    // EFFECTS: Converts library to JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -152,6 +155,7 @@ public class Library implements Writable {
         return json;
     }
 
+    // EFFECTS: Converts list of songs into JSONObject (JSONArray)
     private JSONArray songsToJson() {
         JSONArray jsonArray = new JSONArray();
 

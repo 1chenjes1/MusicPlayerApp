@@ -192,6 +192,7 @@ public class MusicPlayer {
         }
     }
 
+    // MODIFIES: Displays library menu with all songs in library
     private void runLibrary() {
         Scanner sc = new Scanner(System.in);
         boolean back = false;
@@ -246,7 +247,7 @@ public class MusicPlayer {
         }
     }
 
-    //: this
+    // MODIFIES: this
     // EFFECTS: loads library from file
     private void loadLibrary() {
         try {

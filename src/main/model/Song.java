@@ -41,6 +41,7 @@ public class Song implements Writable {
     }
 
 
+    // Converts song into JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

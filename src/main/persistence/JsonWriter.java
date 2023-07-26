@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 // A writer that writes JSON representation of library to file
+// Code was taken from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonWriter {
     private PrintWriter writer;
     private String destination;
