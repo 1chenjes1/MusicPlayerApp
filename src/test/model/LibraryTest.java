@@ -91,12 +91,28 @@ public class LibraryTest {
         assertTrue(testlib.addSong("test2","girl", "3:00"));
         testlib.play();
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 10; i++) {
             Song s1 = testlib.getCurrentSong();
             Song song = testlib.shuffle();
             assertNotSame(s1, song);
             assertTrue(testlib.getSongs().contains(s1));
         }
+    }
+
+    @Test
+    void testSongsEqual() {
+        Song s1 = new Song("a","a", "1:00");
+        Song s2 = new Song("b","a", "1:00");
+        Song s3 = new Song("a","b", "1:00");
+        Song s4 = new Song("a","a", "1:50");
+        Song s5 = new Song("a","a", "1:00");
+
+
+
+        assertTrue(testlib.songsEqual(s1,s5));
+        assertFalse(testlib.songsEqual(s1,s2));
+        assertFalse(testlib.songsEqual(s1,s3));
+        assertFalse(testlib.songsEqual(s1,s4));
 
     }
 

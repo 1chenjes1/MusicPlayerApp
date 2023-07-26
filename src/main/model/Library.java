@@ -36,9 +36,7 @@ public class Library implements Writable {
     public boolean containSong(Song song) {
         boolean result = false;
         for (Song s : this.songs) {
-            if ((s.getArtist().equals(song.getArtist()))
-                    && (s.getTitle().equals(song.getTitle()))
-                    && (s.getLength().equals(song.getLength()))) {
+            if (songsEqual(s, song)) {
                 result = true;
                 break;
             }
@@ -72,9 +70,7 @@ public class Library implements Writable {
     public int indexOfSong(Song song) {
         int result = 0;
         for (Song s : this.songs) {
-            if ((s.getArtist().equals(song.getArtist()))
-                    && (s.getTitle().equals(song.getTitle()))
-                    && (s.getLength().equals(song.getLength()))) {
+            if (songsEqual(s, song)) {
                 break;
             } else {
                 result++;
@@ -103,14 +99,19 @@ public class Library implements Writable {
         Random rndm = new Random();
         Song song = this.songs.get(rndm.nextInt(this.songs.size()));
         Song s = this.getCurrentSong();
-        while ((s.getArtist().equals(song.getArtist()))
-                && (s.getTitle().equals(song.getTitle()))
-                && (s.getLength().equals(song.getLength()))) {
+        while (songsEqual(s, song)) {
             Random rndm2 = new Random();
             song = this.songs.get(rndm2.nextInt(this.songs.size()));
         }
         this.currentSong = song;
         return song;
+    }
+
+    // EFFECTS: produce true if both songs have same title, artist, duration. False otherwise
+    public Boolean songsEqual(Song s, Song song) {
+        return s.getArtist().equals(song.getArtist())
+                && s.getTitle().equals(song.getTitle())
+                && s.getLength().equals(song.getLength());
     }
 
     // MODIFIES: this
