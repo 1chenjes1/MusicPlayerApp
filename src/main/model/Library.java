@@ -86,7 +86,7 @@ public class Library implements Writable {
     // REQUIRES: songs must contain at least 1 element
     // EFFECTS: returns the song before given song in list. If song is first in list, return last song in list
     public Song previous(Song song) {
-        int i = this.songs.indexOf(song);
+        int i = indexOfSong(song);
         int max = this.songs.size() - 1;
         if (i == 0) {
             this.currentSong = this.songs.get(max);
