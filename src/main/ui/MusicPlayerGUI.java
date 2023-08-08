@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class MusicPlayerGUI extends JFrame implements ActionListener {
     private Library userLib;
@@ -47,6 +46,7 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
     private JTextField t3;
     private JTextField t4;
 
+    // Effects: Starts the GUI
     public MusicPlayerGUI() {
         super("Music Player");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -58,6 +58,8 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         initializeMenu();
     }
 
+    // Modifies: this
+    // EFFECTS: sets library fields to default settings
     private void initalizeFields() {
         userLib = new Library("Your Library");
         play = false;
@@ -65,6 +67,8 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         currentlyPlaying = null;
     }
 
+    // Modifies: this
+    // Effects: initializes main menu
     public void initializeMenu() {
         controlPanel = new JPanel();
         controlPanel.setBackground(Color.PINK);
@@ -90,7 +94,7 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         addActionToButton();
     }
 
-
+    // EFfects: adds button to main menu
     private void addButtons() {
         addButton(b1, controlPanel);
         addButton(b2, controlPanel);
@@ -105,7 +109,8 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         addButton(b11, userPanel);
     }
 
-
+    // Modifies: this
+    // Effects: makes buttons for main menu
     private void initializeMenuBottons() {
         ImageIcon iconPlay = new ImageIcon("/Users/Jessica/Downloads/playbutton.png");
         ImageIcon iconPause = new ImageIcon("/Users/Jessica/Downloads/pausebutton.png");
@@ -125,6 +130,7 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         b11 = new JButton("Quit");
     }
 
+    // Effects: resizes icon to fit in button
     //https://stackoverflow.com/questions/36957450/fit-size-of-an-imageicon-to-a-jbutton
     private static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
         Image img = icon.getImage();
@@ -132,6 +138,7 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         return new ImageIcon(resizedImage);
     }
 
+    // Effects: Adds button to given panel
     public void addButton(JButton b, JPanel panel) {
         b.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
         b.setBackground(Color.white);
@@ -140,6 +147,7 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    // Effects: adds actions to all buttons in main screen
     public void addActionToButton() {
         b1.addActionListener(this);
         b1.setActionCommand("play");
@@ -165,6 +173,7 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         b11.setActionCommand("quit");
     }
 
+    //Effects: returns what the currentSong label should show
     public String setLabel() {
         if (currentlyPlaying == null) {
             return "Welcome to Music Player";
@@ -173,6 +182,8 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         }
     }
 
+    // Modifies: this
+    // Effects: initializes add song panel
     public void initializeAddSongPanel() {
         addSongPanel = new JPanel(new GridLayout(5, 2));
 
@@ -199,6 +210,8 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         repaint();
     }
 
+    // Modifies: this
+    // Effects: adds buttons and text fields to add song panel
     private void addButtonsToAddSongPanel() {
         JLabel name = new JLabel("Song name");
         t1 = new JTextField(10);
@@ -215,6 +228,8 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         addSongPanel.add(t3);
     }
 
+    // Modifies: this
+    // Effects: Initializes the view library panel
     private void initalizeLibraryPanel() {
         libraryPanel = new JPanel(new GridLayout(5,1));
         JButton mainMenuButton = new JButton("Return to Main Menu");
@@ -241,6 +256,7 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         repaint();
     }
 
+    // Modifies: this all songs as labels to library panel
     private void addLabelsToLibraryPanel(JPanel panel) {
 
         if (userLib.getSongs().size() == 0) {
@@ -254,6 +270,7 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         }
     }
 
+    // EFFECTS: gets action command and decides what method to call
     @Override
     @SuppressWarnings("methodlength")
     public void actionPerformed(ActionEvent e) {
@@ -292,6 +309,8 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         }
     }
 
+    // Modifies: this
+    // EFFECTS: adds given song to user library if not already added.
     private void add() {
         if (isNotASong()) {
             addedSong.setText("Error: Please fill out all fields");
@@ -378,28 +397,33 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         }
     }
 
+    // EFFECTS: returns true if inputs in textfields do not meet requirement of song (i.e. some fields are empty)
     private boolean isNotASong() {
         return t1.getText().trim().length() == 0
                 || t2.getText().trim().length() == 0
                 || t3.getText().trim().length() == 0;
     }
 
+    // EFFECTS: reinitializes main menu and removes add song panel
     private void returnToMainMenuSong() {
         initializeMenu();
         remove(addSongPanel);
     }
 
+    // EFFECTS: reinitializes main menu and removes library panel
     private void returnToMainMenuLibrary() {
         initializeMenu();
         remove(libraryPanel);
     }
 
+    //Effects: reinitializes main menu and removes rename library panel
     private void returnToMainMenuRename() {
         initializeMenu();
         remove(renamePanel);
     }
 
-
+    // Modifies: this
+    // EFFECTS: Initializes the rename library panel
     public void initializeRenamePanel() {
         renamePanel = new JPanel(new GridLayout(5, 2));
 
@@ -426,6 +450,8 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         repaint();
     }
 
+    // Modifies: this
+    // Effects: adds required buttons and text field to the rename library panel
     private void addButtonsToRenamePanel() {
         JLabel name = new JLabel("New library name");
         t4 = new JTextField(10);
@@ -434,6 +460,8 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         renamePanel.add(t4);
     }
 
+    // Modifies: this
+    // Effects: renames library to given name
     public void renameLibrary() {
         if (t4.getText().trim().length() == 0) {
             renameLibrary.setText("Error: Please fill out all fields");

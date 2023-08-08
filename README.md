@@ -24,3 +24,15 @@ in an academic setting.
 - As a user, I want to be able to shuffle my library
 - As a user, I want to be able to save my library with all my songs 
 - As a user, I want to be able to reload my library with all my songs from file
+
+## Instructions for Grader
+- You can generate the first required action related to adding Xs to a Y by clicking the "Add song to library" button. 
+  This will take you to a new screen where you can type in the song name, artist and duration. These must all be 
+  filled out for the song to be added. A message will appear confirming if the song has been successfully added.
+- You can generate the second required action related to adding Xs to a Y by clicking the "View library" button, which 
+  will show you a list of all the songs currently in the library, with their name, artist and duration.
+  If there are no songs in the library, a message saying no songs will appear.
+- You can locate my visual component by looking at the control panel at the bottom of the main screen page.
+  I have added icons to all the buttons (play,pause,next,etc.)
+- You can save the state of my application by clicking the "save library" button
+- You can reload the state of my application by clicking the "load library" button
