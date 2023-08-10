@@ -28,6 +28,7 @@ public class Library implements Writable {
             return false;
         } else {
             this.songs.add(song);
+            EventLog.getInstance().logEvent(new Event("Added Song"));
             return true;
         }
     }
@@ -47,6 +48,7 @@ public class Library implements Writable {
     //MODIFIES: this
     //EFFECTS: sets currentSong to first song in library
     public Song play() {
+        EventLog.getInstance().logEvent(new Event("Playing first song in library"));
         this.currentSong = this.songs.get(0);
         return this.songs.get(0);
     }
@@ -55,6 +57,7 @@ public class Library implements Writable {
     // REQUIRES: songs must contain at least 1 element
     // EFFECTS: returns the song after given song in list. If song is last in list, return first song in list
     public Song next(Song song) {
+        EventLog.getInstance().logEvent(new Event("Playing next track"));
         int i = indexOfSong(song);
         if (i >= this.songs.size() - 1) {
             this.currentSong = this.songs.get(0);
@@ -84,6 +87,7 @@ public class Library implements Writable {
     public Song previous(Song song) {
         int i = indexOfSong(song);
         int max = this.songs.size() - 1;
+        EventLog.getInstance().logEvent(new Event("Playing previous track"));
         if (i == 0) {
             this.currentSong = this.songs.get(max);
             return this.songs.get(max);
@@ -104,7 +108,9 @@ public class Library implements Writable {
             song = this.songs.get(rndm2.nextInt(this.songs.size()));
         }
         this.currentSong = song;
+        EventLog.getInstance().logEvent(new Event("Library shuffled"));
         return song;
+
     }
 
     // EFFECTS: produce true if both songs have same title, artist, duration. False otherwise
@@ -118,6 +124,7 @@ public class Library implements Writable {
     // EFFECTS: changes name of library to given string
     public void changeName(String name) {
         this.name = name;
+        EventLog.getInstance().logEvent(new Event("Changed library name"));
     }
 
     // MODIFIES: this
@@ -165,4 +172,5 @@ public class Library implements Writable {
 
         return jsonArray;
     }
+
 }

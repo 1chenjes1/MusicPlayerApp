@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Library;
 import model.Song;
 import persistence.JsonReader;
@@ -295,6 +297,7 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
         } else if (e.getActionCommand().equals("load library")) {
             loadLibrary();
         } else if (e.getActionCommand().equals("quit")) {
+            printLog(EventLog.getInstance());
             System.exit(0);
         } else if (e.getActionCommand().equals("Return to Main Menu Song")) {
             returnToMainMenuSong();
@@ -505,6 +508,13 @@ public class MusicPlayerGUI extends JFrame implements ActionListener {
             saveAndLoad.setText("Loaded " + userLib.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             saveAndLoad.setText("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString() + "\n");
+            System.out.println("");
         }
     }
 
