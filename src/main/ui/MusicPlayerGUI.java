@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+// The MusicPlayer application with graphical interface
 public class MusicPlayerGUI extends JFrame implements ActionListener {
     private Library userLib;
     private boolean play;

@@ -36,3 +36,12 @@ in an academic setting.
   I have added icons to all the buttons (play,pause,next,etc.)
 - You can save the state of my application by clicking the "save library" button
 - You can reload the state of my application by clicking the "load library" button
+
+## Phase 4: Task 2
+Events possible:
+- "Added Song" when new song is added to library
+- "Playing first song in library" when the play button is hit initially
+- "Playing next track" when next button is hit
+- "Playing previous track" when previous button is hit
+- "Library shuffled" when shuffle button is hit
+- "Changed library name" when library is renamed
