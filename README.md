@@ -48,6 +48,8 @@ Events possible:
 
 ## Phase 4: Task 3
 - Instead of having a field for JsonWriter and JsonReader in the MusicPlayerGUI class, I could've instantiated 
-  JsonReader and JsonWriter objects within those methods to get rid of couplings
+  JsonReader and JsonWriter objects within those methods to get rid of the associations, as having too many fields 
+  can make the class disorganized.
 - Could've made multiple classes for the GUI, as all the methods corresponding to the GUI are compiled in one singular 
-  class. As a result, the current GUI class is very long, and has reduced cohesion.
+  class. As a result, the current GUI class is very long, and has reduced cohesion. It makes looking for specific code 
+  and debugging very difficult.
