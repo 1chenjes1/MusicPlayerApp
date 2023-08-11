@@ -45,3 +45,9 @@ Events possible:
 - "Playing previous track" when previous button is hit
 - "Library shuffled" when shuffle button is hit
 - "Changed library name" when library is renamed
+
+## Phase 4: Task 3
+- Instead of having a field for JsonWriter and JsonReader in the MusicPlayerGUI class, I could've instantiated 
+  JsonReader and JsonWriter objects within those methods to get rid of couplings
+- Could've made multiple classes for the GUI, as all the methods corresponding to the GUI are compiled in one singular 
+  class. As a result, the current GUI class is very long, and has reduced cohesion.
